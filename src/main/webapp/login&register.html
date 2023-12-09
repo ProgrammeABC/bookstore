@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录和注册页面</title>
+    <link rel="stylesheet"  href="css/login.css">
+    <link rel="stylesheet"  href="css/register.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="lib/layer/layer.js"></script>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div class="login-box">
+    <div class="lb-header">
+        <a href="#" class="active" id="login-box-link">登录</a>
+        <a href="#" id="signup-box-link">注册</a>
+    </div>
+    <form class="email-login" onsubmit="return false">
+        <div class="u-form-group">
+            <input type="text" id="login_username" placeholder="账号"/>
+        </div>
+        <div class="u-form-group">
+            <input type="password" id="login_password" placeholder="密码"/>
+        </div>
+        <div class="u-form-group">
+            <button type="submit" onclick="login()">登录</button>
+        </div>
+        <div class="u-form-group">
+            <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+
+    </form>
+    <form class="email-signup" onsubmit="return false">
+        <div class="u-form-group">
+            <input type="text" id="reg_username" placeholder="账号"/>
+        </div>
+        <div class="u-form-group">
+            <input type="password" id="reg_password1" placeholder="密码"/>
+        </div>
+        <div class="u-form-group">
+            <input type="password" id="reg_password2" placeholder="确认密码"/>
+        </div>
+        <div class="u-form-group">
+            <input type="text" id="reg_phone" placeholder="手机号(选填)"/>
+        </div>
+        <div class="u-form-group">
+            <button onclick="register()">注册</button>
+        </div>
+    </form>
+</div>
+<script src="js/login.js"></script>
+<script src="js/login&register/loginChecked.js"></script>
+</body>
+</html>

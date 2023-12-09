@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+<!--配置映射的接口-->
+<mapper namespace="com.bookstore.dao.UserDao">
+
+<!--    配置resultMap解决ORM问题-->
+    <resultMap id="userMap" type="com.bookstore.entity.User">
+        <id property="userId" column="user_id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="isDel" column="is_del"></result>
+        <result property="isAdmin" column="is_admin"></result>
+        <result property="phone" column="phone"></result>
+        <result property="headUrl" column="head_url"></result>
+<!--        多对一映射-->
+<!--        <association property="dep" javaType="dep">-->
+<!--            <id property="depId" column="department_id"></id>-->
+<!--            <result property="depName" column="department_name"></result>-->
+<!--        </association>-->
+    </resultMap>
+    <parameterMap id="insertUserMap" type="com.bookstore.entity.User">
+        <parameter property="username"></parameter>
+        <parameter property="password"></parameter>
+        <parameter property="phone"></parameter>
+        <parameter property="isAdmin"></parameter>
+        <!--        多对一映射-->
+        <!--        <association property="dep" javaType="dep">-->
+        <!--            <id property="depId" column="department_id"></id>-->
+        <!--            <result property="depName" column="department_name"></result>-->
+        <!--        </association>-->
+    </parameterMap>
+
+<!--    <resultMap id="empMap2" type="emp">-->
+<!--        <id property="empId" column="employee_id"></id>-->
+<!--        <result property="empName" column="first_name"></result>-->
+<!--        <result property="salary" column="salary"></result>-->
+<!--        <result property="depId" column="department_id"></result>-->
+<!--    </resultMap>-->
+
+<!--    根据主键查询  做一对多关联映射-->
+    <select id="findByNameAndPassword" resultMap="userMap">
+        select * from user where username=#{username} and password=#{password}
+    </select>
+    <select id="findByUserId" resultMap="userMap">
+        select * from user where user_id=#{uid}
+    </select>
+    <select id="findByUsername" resultMap="userMap">
+        select * from user where username=#{username}
+    </select>
+    <insert id="insertUser" parameterMap="insertUserMap">
+        insert into user (username, password, phone ,is_admin) VALUES (#{username},#{password},#{phone},#{isAdmin})
+    </insert>
+<!--&lt;!&ndash;    根据部门编号查询&ndash;&gt;-->
+<!--    <select id="findByDepId" resultMap="empMap2">-->
+<!--        select * from emp where department_id=#{depId}-->
+<!--    </select>-->
+
+<!--&lt;!&ndash;    修改薪水&ndash;&gt;-->
+<!--    <update id="updateSalary">-->
+<!--        update emp set salary=#{salary} where employee_id=#{empId}-->
+<!--    </update>-->
+
+
+</mapper>

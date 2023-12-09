@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+<!--    别名配置-->
+    <typeAliases>
+        <package name="com.bookstore.entity"/>
+<!--        <typeAlias type="" alias=""></typeAlias>-->
+    </typeAliases>
+
+<!--    注册映射文件-->
+    <mappers>
+        <mapper resource="mapper/user-mapper.xml"></mapper>
+        <mapper resource="mapper/book-mapper.xml"></mapper>
+        <mapper resource="mapper/bookPic-mapper.xml"></mapper>
+        <mapper resource="mapper/shoppingCart-mapper.xml"></mapper>
+    </mappers>
+</configuration>

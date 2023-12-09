@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+<!--配置映射的接口-->
+<mapper namespace="com.bookstore.dao.ShoppingCartDao">
+
+<!--    配置resultMap解决ORM问题-->
+    <resultMap id="shoppingCartMap" type="shoppingCart">
+        <id property="bookName" column="book_name"></id>
+        <result property="price" column="price"></result>
+<!--        <result property="salary" column="salary"></result>-->
+<!--        多对一映射-->
+<!--        <association property="dep" javaType="dep">-->
+<!--            <id property="depId" column="department_id"></id>-->
+<!--            <result property="depName" column="department_name"></result>-->
+<!--        </association>-->
+    </resultMap>
+
+<!--    <resultMap id="empMap2" type="emp">-->
+<!--        <id property="empId" column="employee_id"></id>-->
+<!--        <result property="empName" column="first_name"></result>-->
+<!--        <result property="salary" column="salary"></result>-->
+<!--        <result property="depId" column="department_id"></result>-->
+<!--    </resultMap>-->
+
+<!--    根据主键查询  做一对多关联映射-->
+<!--    <select id="findById" resultMap="empMap">-->
+<!--        select employee_id,first_name,salary,dep.department_id,department_name from-->
+<!--        emp inner join dep on emp.department_id=dep.department_id where employee_id=#{empId}-->
+<!--    </select>-->
+
+<!--    根据部门编号查询-->
+<!--    <select id="findByDepId" resultMap="empMap2">-->
+<!--        select * from emp where department_id=#{depId}-->
+<!--    </select>-->
+
+<!--    修改薪水-->
+<!--    <update id="updateSalary">-->
+<!--        update emp set salary=#{salary} where employee_id=#{empId}-->
+<!--    </update>-->
+
+
+</mapper>
