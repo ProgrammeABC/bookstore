@@ -13,7 +13,7 @@ public class BookService {
     @Resource
     private BookDao bookDao;
 
-    public Book findByName(String bookName){
-        return bookDao.findByName(bookName);
+    public Book findById(String bookId){
+        return bookDao.getBookById(bookId);
     }
 }

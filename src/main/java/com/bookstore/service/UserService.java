@@ -19,6 +19,9 @@ public class UserService {
         return userDao.findByNameAndPassword(username,password);
     }
 
+    public void delUserByUsername(String username){
+        userDao.delUserByUsername(username);
+    }
     public User findByUsername(String username){
         return userDao.findByUsername(username);
     }

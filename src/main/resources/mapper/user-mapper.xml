@@ -31,6 +31,14 @@
         <!--            <result property="depName" column="department_name"></result>-->
         <!--        </association>-->
     </parameterMap>
+    <parameterMap id="delUserMap" type="com.bookstore.entity.User">
+        <parameter property="username"></parameter>
+    <!--        多对一映射-->
+    <!--        <association property="dep" javaType="dep">-->
+    <!--            <id property="depId" column="department_id"></id>-->
+    <!--            <result property="depName" column="department_name"></result>-->
+    <!--        </association>-->
+    </parameterMap>
 
 <!--    <resultMap id="empMap2" type="emp">-->
 <!--        <id property="empId" column="employee_id"></id>-->
@@ -52,6 +60,11 @@
     <insert id="insertUser" parameterMap="insertUserMap">
         insert into user (username, password, phone ,is_admin) VALUES (#{username},#{password},#{phone},#{isAdmin})
     </insert>
+
+    <delete id="delUserByUsername" parameterMap="delUserMap">
+        delete from user where username = #{username}
+    </delete>
+
 <!--&lt;!&ndash;    根据部门编号查询&ndash;&gt;-->
 <!--    <select id="findByDepId" resultMap="empMap2">-->
 <!--        select * from emp where department_id=#{depId}-->

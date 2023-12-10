@@ -9,5 +9,7 @@ public interface UserDao {
 
     User findByUsername(@Param("username")String username);
 
+    void delUserByUsername(@Param("username")String username);
+
     void insertUser(@Param("username")String username,@Param("password")String password,@Param("phone")String phone,@Param("isAdmin")Integer isAdmin);
 }

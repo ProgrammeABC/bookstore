@@ -17,6 +17,23 @@
 <!--        </association>-->
     </resultMap>
 
+    <select id="findById" resultType="shoppingCart" parameterType="int">
+        SELECT * FROM cart_items WHERE user_id = #{userId};
+    </select>
+
+    <insert id="addBook" parameterType="shoppingCart">
+        INSERT INTO cart_items (user_id, book_id, quantity)
+        VALUES (#{userId}, #{bookId}, #{quantity});
+    </insert>
+
+    <delete id="delBook" parameterType="int">
+        DELETE FROM cart_items WHERE id = #{cartItemId};
+    </delete>
+
+    <update id="updateCartItem" parameterType="shoppingCart">
+        UPDATE cart_items SET quantity = #{quantity} WHERE id = #{id};
+    </update>
+
 <!--    <resultMap id="empMap2" type="emp">-->
 <!--        <id property="empId" column="employee_id"></id>-->
 <!--        <result property="empName" column="first_name"></result>-->

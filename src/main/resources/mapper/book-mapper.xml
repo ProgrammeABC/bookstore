@@ -17,12 +17,14 @@
 <!--        </association>-->
     </resultMap>
 <!--生成一个根据用户名mapper-->
-    <resultMap id="userMap" type="com.bookstore.entity.User">
-        <id property="userId" column="user_id"></id>
-        <result property="username" column="username"></result>
-        <result property="password" column="password"></result>
-        <result property="phone" column="phone"></result>
-    </resultMap>
+
+        <select id="getAllBooks" resultType="Book">
+            SELECT * FROM books;
+        </select>
+
+        <select id="getBookById" resultType="Book" parameterType="int">
+            SELECT * FROM books WHERE id = #{id};
+        </select>
 
 <!--    根据主键查询  做一对多关联映射-->
 <!--    <select id="findById" resultMap="empMap">-->
@@ -36,9 +38,9 @@
 <!--    </select>-->
 
 <!--    根据用户名和密码获取用户-->
-    <select id="findByNameAndPassword" resultMap="userMap">
-        select * from user where username=#{username} and password=#{password}
-    </select>
+<!--    <select id="findByNameAndPassword" resultMap="userMap">-->
+<!--        select * from user where username=#{username} and password=#{password}-->
+<!--    </select>-->
 
 <!--    根据用户名获取用户-->
 <!--    <select id="findByName" resultMap="empMap">-->

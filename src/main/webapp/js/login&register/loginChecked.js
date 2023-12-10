@@ -19,7 +19,7 @@ function login(){
                 success:function(data){
                     console.log(data);
                     //将userId保存在本地
-                    if(data.ok==false) {
+                    if(data.ok===false) {
                         layer.msg(data.msg, {
                             icon: 2,
                             time: 4000 //2秒关闭（如果不配置，默认是3秒）

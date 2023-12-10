@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("user")//handler路径
 public class UserHandler {
 
     @Resource
@@ -54,7 +54,8 @@ public class UserHandler {
                 map.put("msg", "Login failed:unknown error");
             }
         } else {
-            map.put("em", "用户名不存在");
+            map.put("ok", false);
+            map.put("msg", "Login failed:用户名或密码错误");
         }
         return map;
     }
@@ -84,6 +85,27 @@ public class UserHandler {
         return map;
     }
 
+    @ResponseBody
+    @RequestMapping("deregister")//注销功能入口路径
+    public Object deregister(@RequestBody JSONObject usernameJ,HttpSession session){
+        String username = (String) usernameJ.get("username");
+        System.out.println("username:"+username);
+        Map<String, Object> map = new HashMap<>();
+        if(null==userService.findByUsername(username)){
+            map.put("ok",false);
+            map.put("msg","用户不存在");
+        }else{
+            userService.delUserByUsername(username);
+            if(null==userService.findByUsername(username)){
+                map.put("ok",true);
+                map.put("msg","注销成功");
+            }else{
+                map.put("ok",false);
+                map.put("msg","其他错误");
+            }
+        }
+        return map;
+    }
 //    @ResponseBody
 //    @RequestMapping("isExist")
 //    public Object isExist(@RequestBody String username, HttpSession Session) {
