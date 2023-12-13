@@ -1,2 +1,5 @@
 # 项目排除路径
 /out/
+/target/
+/.idea/
+/src/main/resources/spring-jdbc.xml
