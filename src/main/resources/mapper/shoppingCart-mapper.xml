@@ -6,9 +6,11 @@
 <mapper namespace="com.bookstore.dao.ShoppingCartDao">
 
 <!--    配置resultMap解决ORM问题-->
-    <resultMap id="shoppingCartMap" type="shoppingCart">
-        <id property="bookName" column="book_name"></id>
-        <result property="price" column="price"></result>
+    <resultMap id="shoppingCartResultMap" type="com.bookstore.entity.ShoppingCart">
+        <id property="id" column="id"></id>
+        <result property="userId" column="user_id"></result>
+        <result property="bookId" column="book_id"></result>
+        <result property="num" column="num"></result>
 <!--        <result property="salary" column="salary"></result>-->
 <!--        多对一映射-->
 <!--        <association property="dep" javaType="dep">-->
@@ -16,23 +18,41 @@
 <!--            <result property="depName" column="department_name"></result>-->
 <!--        </association>-->
     </resultMap>
+<!--    <parameterMap id="shoppingCartBaseParameterMap" type="shoppingCart">-->
+<!--        <parameter property=""-->
+<!--    </parameterMap>-->
 
-    <select id="findById" resultType="shoppingCart" parameterType="int">
-        SELECT * FROM cart_items WHERE user_id = #{userId};
+
+    <select id="findItemByUIDAndBID" resultMap="shoppingCartResultMap">
+        SELECT * FROM ShoppingCart WHERE user_id = #{userId} AND book_id = #{bookId};
     </select>
 
-    <insert id="addBook" parameterType="shoppingCart">
-        INSERT INTO cart_items (user_id, book_id, quantity)
-        VALUES (#{userId}, #{bookId}, #{quantity});
+    <select id="findItemByID" resultMap="shoppingCartResultMap">
+        SELECT * FROM ShoppingCart WHERE id = #{id};
+    </select>
+
+    <select id="findItemByUID" resultMap="shoppingCartResultMap">
+        SELECT * FROM ShoppingCart WHERE user_id = #{uid};
+    </select>
+
+    <insert id="addItemIntoShoppingCart" parameterType="com.bookstore.entity.ShoppingCart">
+        INSERT INTO ShoppingCart (user_id, book_id, num)
+        VALUES (#{ShoppingCart.userId}, #{ShoppingCart.bookId}, #{ShoppingCart.num});
     </insert>
 
-    <delete id="delBook" parameterType="int">
-        DELETE FROM cart_items WHERE id = #{cartItemId};
+    <delete id="removeItemFromShoppingCart" parameterType="com.bookstore.entity.ShoppingCart">
+        DELETE FROM shoppingCart WHERE id = #{ShoppingCart.id};
     </delete>
 
-    <update id="updateCartItem" parameterType="shoppingCart">
-        UPDATE cart_items SET quantity = #{quantity} WHERE id = #{id};
+    <delete id="clearCart" parameterType="com.bookstore.entity.ShoppingCart">
+        DELETE FROM shoppingCart WHERE user_id = #{ShoppingCart.userId};
+    </delete>
+
+    <update id="updateCartItem" parameterType="com.bookstore.entity.ShoppingCart">
+        UPDATE shoppingCart SET num = #{ShoppingCart.num} WHERE id = #{ShoppingCart.id};
     </update>
+
+
 
 <!--    <resultMap id="empMap2" type="emp">-->
 <!--        <id property="empId" column="employee_id"></id>-->

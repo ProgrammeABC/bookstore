@@ -2,6 +2,7 @@ package com.bookstore.entity;
 
 import java.io.Serializable;
 
+
 public class ShoppingCart implements Serializable {
     private Integer id;
 
@@ -41,6 +42,16 @@ public class ShoppingCart implements Serializable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public ShoppingCart(Integer id, Integer userId, Integer bookId, Integer num) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.num = num;
+    }
+
+    public ShoppingCart() {
     }
 
     @Override
