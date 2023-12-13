@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button onclick="deregister('1111')">注销账号</button>
+<script src="js/jquery.min.js"></script>
+<script>
+    backend = "http://localhost:8080/bookstore_war_exploded"
+    function deregister(username){
+        $.ajax({
+            url: backend + "/user/deregister",
+            type: "post",
+            //将json转为string格式发送
+            data: JSON.stringify({"username": username}),
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            success: function (data) {
+                alert("data:"+data.msg)
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
